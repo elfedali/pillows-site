@@ -1,0 +1,124 @@
+created:
+    - app/Http/Controllers/PlaceController.php
+    - app/Http/Controllers/CategoryController.php
+    - app/Http/Controllers/FeatureController.php
+    - app/Http/Controllers/TagController.php
+    - app/Http/Controllers/ReviewController.php
+    - app/Http/Controllers/ReservationController.php
+    - app/Http/Controllers/ImageController.php
+    - app/Http/Controllers/FavoriteController.php
+    - app/Http/Controllers/PhoneController.php
+    - app/Http/Controllers/PostController.php
+    - app/Http/Controllers/ContactController.php
+    - database/factories/PlaceFactory.php
+    - database/factories/CategoryFactory.php
+    - database/factories/FeatureFactory.php
+    - database/factories/TagFactory.php
+    - database/factories/ReviewFactory.php
+    - database/factories/ReservationFactory.php
+    - database/factories/ImageFactory.php
+    - database/factories/FavoriteFactory.php
+    - database/factories/PhoneFactory.php
+    - database/factories/PostFactory.php
+    - database/factories/ContactFactory.php
+    - database/migrations/2023_12_21_111017_create_places_table.php
+    - database/migrations/2023_12_21_111018_create_categories_table.php
+    - database/migrations/2023_12_21_111019_create_features_table.php
+    - database/migrations/2023_12_21_111020_create_tags_table.php
+    - database/migrations/2023_12_21_111021_create_reviews_table.php
+    - database/migrations/2023_12_21_111022_create_reservations_table.php
+    - database/migrations/2023_12_21_111023_create_images_table.php
+    - database/migrations/2023_12_21_111024_create_favorites_table.php
+    - database/migrations/2023_12_21_111025_create_phones_table.php
+    - database/migrations/2023_12_21_111026_create_posts_table.php
+    - database/migrations/2023_12_21_111027_create_contacts_table.php
+    - database/migrations/2023_12_21_111028_create_feature_place_table.php
+    - database/migrations/2023_12_21_111029_create_category_place_table.php
+    - database/migrations/2023_12_21_111030_create_place_tag_table.php
+    - database/migrations/2023_12_21_111031_create_category_post_table.php
+    - database/migrations/2023_12_21_111032_create_post_tag_table.php
+    - app/Models/Place.php
+    - app/Models/Category.php
+    - app/Models/Feature.php
+    - app/Models/Tag.php
+    - app/Models/Review.php
+    - app/Models/Reservation.php
+    - app/Models/Image.php
+    - app/Models/Favorite.php
+    - app/Models/Phone.php
+    - app/Models/Post.php
+    - app/Models/Contact.php
+    - database/seeders/UserSeeder.php
+    - database/seeders/CategorySeeder.php
+    - database/seeders/FeatureSeeder.php
+    - database/seeders/TagSeeder.php
+    - tests/Feature/Http/Controllers/PlaceControllerTest.php
+    - tests/Feature/Http/Controllers/CategoryControllerTest.php
+    - tests/Feature/Http/Controllers/FeatureControllerTest.php
+    - tests/Feature/Http/Controllers/TagControllerTest.php
+    - tests/Feature/Http/Controllers/ReviewControllerTest.php
+    - tests/Feature/Http/Controllers/ReservationControllerTest.php
+    - tests/Feature/Http/Controllers/ImageControllerTest.php
+    - tests/Feature/Http/Controllers/FavoriteControllerTest.php
+    - tests/Feature/Http/Controllers/PhoneControllerTest.php
+    - tests/Feature/Http/Controllers/PostControllerTest.php
+    - tests/Feature/Http/Controllers/ContactControllerTest.php
+    - app/Http/Requests/PlaceStoreRequest.php
+    - app/Http/Requests/PlaceUpdateRequest.php
+    - app/Http/Requests/CategoryStoreRequest.php
+    - app/Http/Requests/CategoryUpdateRequest.php
+    - app/Http/Requests/FeatureStoreRequest.php
+    - app/Http/Requests/FeatureUpdateRequest.php
+    - app/Http/Requests/TagStoreRequest.php
+    - app/Http/Requests/TagUpdateRequest.php
+    - app/Http/Requests/ReviewStoreRequest.php
+    - app/Http/Requests/ReviewUpdateRequest.php
+    - app/Http/Requests/ReservationStoreRequest.php
+    - app/Http/Requests/ReservationUpdateRequest.php
+    - app/Http/Requests/ImageStoreRequest.php
+    - app/Http/Requests/ImageUpdateRequest.php
+    - app/Http/Requests/FavoriteStoreRequest.php
+    - app/Http/Requests/FavoriteUpdateRequest.php
+    - app/Http/Requests/PhoneStoreRequest.php
+    - app/Http/Requests/PhoneUpdateRequest.php
+    - app/Http/Requests/PostStoreRequest.php
+    - app/Http/Requests/PostUpdateRequest.php
+    - app/Http/Requests/ContactStoreRequest.php
+    - app/Http/Requests/ContactUpdateRequest.php
+    - app/Http/Resources/PlaceCollection.php
+    - app/Http/Resources/PlaceResource.php
+    - app/Http/Resources/CategoryCollection.php
+    - app/Http/Resources/CategoryResource.php
+    - app/Http/Resources/FeatureCollection.php
+    - app/Http/Resources/FeatureResource.php
+    - app/Http/Resources/TagCollection.php
+    - app/Http/Resources/TagResource.php
+    - app/Http/Resources/ReviewCollection.php
+    - app/Http/Resources/ReviewResource.php
+    - app/Http/Resources/ReservationCollection.php
+    - app/Http/Resources/ReservationResource.php
+    - app/Http/Resources/ImageCollection.php
+    - app/Http/Resources/ImageResource.php
+    - app/Http/Resources/FavoriteCollection.php
+    - app/Http/Resources/FavoriteResource.php
+    - app/Http/Resources/PhoneCollection.php
+    - app/Http/Resources/PhoneResource.php
+    - app/Http/Resources/PostCollection.php
+    - app/Http/Resources/PostResource.php
+    - app/Http/Resources/ContactCollection.php
+    - app/Http/Resources/ContactResource.php
+updated:
+    - routes/api.php
+models:
+    Category: { name: string, slug: 'string unique', note: 'text nullable', icon: 'string nullable', parent_id: 'id nullable', relationships: { belongsToMany: 'Place, Post' } }
+    Contact: { name: string, email: 'string nullable', subject: 'string nullable', phone: 'string nullable', message: text, relationships: { morphTo: Contactable } }
+    Favorite: { user_id: 'id foreign:users', relationships: { morphTo: Favoritable } }
+    Feature: { name: string, slug: 'string unique', note: 'text nullable', icon: 'string nullable', relationships: { belongsToMany: Place } }
+    Image: { name: 'string nullable', path: string, is_featured: 'boolean default:false', relationships: { morphTo: Imageable } }
+    Phone: { phone: string, is_verified: 'boolean default:false', is_main: 'boolean default:false', relationships: { morphTo: Phoneable } }
+    Place: { owner_id: 'id foreign:users', name: string, slug: 'string unique', slogan: 'string nullable', description: text, is_approved: 'boolean default:false', is_active: 'boolean default:true', longitude: float, latitude: float, email: 'string  nullable', phone: 'string  nullable', website: 'string  nullable', address: 'string nullable', city: 'string nullable', country: 'string nullable', zip_code: 'string nullable', max_guests: integer, num_bedrooms: integer, num_beds: integer, num_baths: integer, superficy: integer, check_in_hour: integer, check_out_hour: integer, cancellation_policy: string, min_stay: integer, max_stay: integer, price: integer, currency: string, relationships: { belongsToMany: 'Feature, Category, Tag', morphMany: 'Review, Reservation, Image, Favorite, Phone, Contact' } }
+    Post: { title: string, slug: string, content: 'text nullable', author_id: 'id foreign:users', is_published: 'boolean default:false', relationships: { belongsToMany: 'Category, Tag', morphMany: Image } }
+    Reservation: { start_date: date, end_date: date, price: integer, status: 'enum:pending,accepted,rejected', note: 'text nullable', relationships: { morphTo: Reservationable } }
+    Review: { reviewer_id: 'id foreign:users', rating: integer, comment: 'text nullable', parent_id: 'id nullable', relationships: { morphTo: Reviewable } }
+    Tag: { name: string, slug: 'string unique', note: 'text nullable', relationships: { belongsToMany: 'Place, Post' } }
+    User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }

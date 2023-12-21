@@ -1,0 +1,136 @@
+models:
+  Place:
+    owner_id: id foreign:users
+    name: string
+    slug: string unique
+    slogan: string nullable
+    description: text
+    is_approved: boolean default:false
+    is_active: boolean default:true
+    longitude: float
+    latitude: float
+    email: string  nullable
+    phone: string  nullable
+    website: string  nullable
+    address: string nullable
+    city: string nullable
+    country: string nullable
+    zip_code: string nullable
+    max_guests: integer
+    num_bedrooms: integer
+    num_beds: integer
+    num_baths: integer
+    superficy: integer
+    check_in_hour: integer
+    check_out_hour: integer
+    cancellation_policy: string
+    min_stay: integer
+    max_stay: integer
+    price: integer
+    currency: string
+    relationships:
+      belongsToMany: Feature, Category, Tag
+      morphMany: Review, Reservation, Image, Favorite, Phone, Contact
+
+  Category:
+    name: string
+    slug: string unique
+    note: text nullable
+    icon: string nullable
+    parent_id: id nullable
+    relationships:
+      belongsToMany: Place, Post
+
+  Feature:
+    name: string
+    slug: string unique
+    note: text nullable
+    icon: string nullable
+    relationships:
+      belongsToMany: Place
+
+  Tag:
+    name: string
+    slug: string unique
+    note: text nullable
+    relationships:
+      belongsToMany: Place, Post
+
+  Review:
+    reviewer_id: id foreign:users
+    rating: integer
+    comment: text nullable
+    parent_id: id nullable
+    relationships:
+      morphTo: Reviewable
+
+  Reservation:
+    start_date: date
+    end_date: date
+    price: integer
+    status: enum:pending,accepted,rejected
+    note: text nullable
+    relationships:
+      morphTo: Reservationable
+  Image:
+    name: string nullable
+    path: string
+    is_featured: boolean default:false
+    relationships:
+      morphTo: Imageable
+
+  Favorite:
+    user_id: id foreign:users
+    relationships:
+      morphTo: Favoritable
+  Phone:
+    phone: string
+    is_verified: boolean default:false
+    is_main: boolean default:false
+    relationships:
+      morphTo: Phoneable
+
+  Post:
+    title: string
+    slug: string
+    content: text nullable
+    author_id: id foreign:users
+    is_published: boolean default:false
+    relationships:
+      belongsToMany: Category, Tag
+      morphMany: Image
+
+  Contact:
+    name: string
+    email: string nullable
+    subject: string nullable
+    phone: string nullable
+    message: text
+    relationships:
+      morphTo: Contactable
+
+seeders: User, Category, Feature, Tag
+
+controllers:
+  Place:
+    resource: api
+  Category:
+    resource: api
+  Feature:
+    resource: api
+  Tag:
+    resource: api
+  Review:
+    resource: api
+  Reservation:
+    resource: api
+  Image:
+    resource: api
+  Favorite:
+    resource: api
+  Phone:
+    resource: api
+  Post:
+    resource: api
+  Contact:
+    resource: api
